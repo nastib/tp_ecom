@@ -12,10 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreationCommande extends HttpServlet {
 
+    public static final String VUE_AFFICHE = "/afficherCommande.jsp";
+    public static final String VUE_CREATION = "/creerCommande.jsp";
+    public static final String MSG_NOM = "Erreur - le <b>nom</b> est obligatoire. ";
+    public static final String MSG_ADRESSE = "Erreur - l\'<b>adresse</b> est obligatoire. ";
+    public static final String MSG_TEL = "Erreur - le <b>Téléphone</b> est obligatoire. ";
+    public static final String MSG_SUCCES = "Commande créée avec succès !";
+    public static final String MSG_MONTANT = "Erreur - le <b>Montant</b> est obligatoire. ";
+    public static final String MSG_PAIEMENT = "Erreur - le <b>Mode de paiement</b> est obligatoire. ";
+    public static final String MSG_LIVRAISON = "Erreur - le <b>Mode de livraison</b> est obligatoire. ";
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         
-        this.getServletContext().getRequestDispatcher("/creerCommande.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher(VUE_CREATION).forward(request, response);
     }
 
     @Override
@@ -27,75 +37,85 @@ public class CreationCommande extends HttpServlet {
         String telephoneClient = request.getParameter("telephoneClient");
         String emailClient = request.getParameter("emailClient");
         
-        Commande commande = new Commande();
-        commande.setDateCommande("");
-        String dateCommande = commande.getDateCommande();
-        
         String modePaiementCommande = request.getParameter("modePaiementCommande");
         Double montantCommande = Double.parseDouble(request.getParameter("montantCommande"));
         String statutPaiementCommande = request.getParameter("statutPaiementCommande");
         String modeLivraisonCommande = request.getParameter("modeLivraisonCommande");
         String statutLivraisonCommande = request.getParameter("statutLivraisonCommande");
         
-        request.setAttribute("nomClient", nomClient);
-        request.setAttribute("prenomClient", prenomClient);
-        request.setAttribute("adresseClient", adresseClient);
-        request.setAttribute("telephoneClient", telephoneClient);
-        request.setAttribute("emailClient", emailClient);
+        Client client = new Client();
+        Commande commande = new Commande();
+        commande.setDateCommande("");
         
-        request.setAttribute("dateCommande",dateCommande);
-        request.setAttribute("modePaiementCommande",modePaiementCommande);
-        request.setAttribute("montantCommande",montantCommande);
-        request.setAttribute("statutPaiementCommande",statutPaiementCommande);
-        request.setAttribute("modeLivraisonCommande",modeLivraisonCommande);
-        request.setAttribute("statutLivraisonCommande",statutLivraisonCommande);
-        
-        System.out.println(nomClient);
-        String message="";
-   
         if ( (nomClient != null && !nomClient.isEmpty()) && 
-             (adresseClient != null && !adresseClient.isEmpty() &&
-             (telephoneClient != null && !telephoneClient.isEmpty())) ) {
-            Client client = new Client();
-            message = "Commande créée avec succès !";
-            request.setAttribute("message", message);     
+             (adresseClient != null && !adresseClient.isEmpty()) &&
+             (telephoneClient != null && !telephoneClient.isEmpty()) &&
+             ( montantCommande != null && !montantCommande.equals(0.0) && !montantCommande.equals(0)) && 
+             (modePaiementCommande != null && !modePaiementCommande.isEmpty()) &&
+             (modeLivraisonCommande != null && !modeLivraisonCommande.isEmpty())) {
+                
             try {
-                client.setPrenomClient(prenomClient);
+                
                 client.setNomClient(nomClient);
+                client.setPrenomClient(prenomClient);
                 client.setAdresseClient(adresseClient);
                 client.setTelephoneClient(telephoneClient);
                 client.setEmailClient(emailClient);
 
-                this.getServletContext().getRequestDispatcher("/afficherCommande.jsp").forward(request, response);  
+                commande.setMontantCommande(montantCommande);
+                commande.setModePaiementCommande(modePaiementCommande);
+                commande.setStatutPaiementCommande(statutPaiementCommande);
+                commande.setModeLivraisonCommande(modeLivraisonCommande);
+                commande.setStatutLivraisonCommande(statutLivraisonCommande);
+
+                request.setAttribute("client", client);
+                request.setAttribute("commande", commande);
+                request.setAttribute("message", MSG_SUCCES);
+                
+                this.getServletContext().getRequestDispatcher(VUE_AFFICHE).forward(request, response);  
             } catch (BeanException ex) {
                 request.setAttribute("nomHelp", ex.getMessage());
-                this.getServletContext().getRequestDispatcher("/creerCommande.jsp").forward(request, response);      
+                this.getServletContext().getRequestDispatcher(VUE_CREATION).forward(request, response);      
             }            
     
 
         } else {
-             if ( nomClient == null || (nomClient != null && nomClient.isEmpty())){
-                    message = "Erreur - le champs <b>nom</b> est obligatoire. ";
-                    request.setAttribute("nomHelp", message);
+             if ( nomClient == null || nomClient.isEmpty()){
+                    request.setAttribute("nomHelp", MSG_NOM);
              } else {
                     request.setAttribute("nomHelp", null);
              }
 
-             if ( adresseClient == null || (adresseClient != null && adresseClient.isEmpty())){
-                    message = "Erreur - le champs <b>adresse</b> est obligatoire. ";
-                    request.setAttribute("adresseHelp", message);
+             if ( adresseClient == null ||  adresseClient.isEmpty()){
+                    request.setAttribute("adresseHelp", MSG_ADRESSE);
              } else {
                     request.setAttribute("adresseHelp", null);
              }
              
-             if ( telephoneClient == null || (telephoneClient != null && telephoneClient.isEmpty())){
-                    message = "Erreur - le champs <b>telephone</b> est obligatoire. ";
-                    request.setAttribute("telephoneHelp", message);
+             if ( telephoneClient == null ||  telephoneClient.isEmpty()){
+                    request.setAttribute("telephoneHelp", MSG_TEL);
              }  else {
                     request.setAttribute("telephoneHelp", null);
              }           
+             
+             if ( montantCommande == null || montantCommande.equals(0.0) || montantCommande.equals(0)) {
+                 request.setAttribute("montantHelp", MSG_MONTANT);
+             } else {
+                  request.setAttribute("montantHelp", null);
+             }
 
-            this.getServletContext().getRequestDispatcher("/creerCommande.jsp").forward(request, response);      
+             if ( modePaiementCommande == null ||  modePaiementCommande.isEmpty()) {
+                 request.setAttribute("paiementHelp", MSG_PAIEMENT);
+             } else {
+                  request.setAttribute("paiementHelp", null);
+             } 
+             
+             if ( modeLivraisonCommande == null ||  modeLivraisonCommande.isEmpty()) {
+                 request.setAttribute("livraisonHelp", MSG_LIVRAISON);
+             } else {
+                  request.setAttribute("livraisonHelp", null);
+             }              
+             this.getServletContext().getRequestDispatcher(VUE_CREATION).forward(request, response);      
 
         }
     }
