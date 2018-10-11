@@ -8,15 +8,12 @@ public class Client {
     private String telephoneClient; 
     private String emailClient; 
 
-    public Client() {
-    }
-
     public String getNomClient() {
         return nomClient;
     }
 
     public void setNomClient(String nomClient) throws BeanException {
-        if ( nomClient.length() <= 15) {
+        if ( nomClient != null && nomClient.length() <= 15) {
             this.nomClient = nomClient;
         } else {
             throw new BeanException("Attention ! \n Le nom est trop grand ! (15 caractères maximum).");

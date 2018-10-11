@@ -1,39 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Servlet configuration section -->
+    
+    <!-- ########### Gestion du login ########## -->
+    <servlet>
+        <servlet-name>Inscription</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.Inscription</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Connexion</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.Connexion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Deconnexion</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.Deconnexion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Accueil</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.Accueil</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Inscription</servlet-name>
+        <url-pattern>/inscription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Connexion</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Deconnexion</servlet-name>
+        <url-pattern>/deconnexion</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>Accueil</servlet-name>
+        <url-pattern>/accueil</url-pattern>
+    </servlet-mapping>
+                           
+    <!-- ########### Gestion des clients ########## -->   
     <servlet>
         <servlet-name>CreationClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.CreationClient</servlet-class>
+        <servlet-class>com.nastib.tpecom.servlets.client.CreationClient</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreationCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.CreationCommande</servlet-class>
+        <servlet-name>ListeClient</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.client.ListeClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AfficherClient</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.client.AfficherClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteClient</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.client.DeleteClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditionClient</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.client.EditionClient</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>CreationClient</servlet-name>
         <url-pattern>/creationclient</url-pattern>
+    </servlet-mapping>    
+     <servlet-mapping>
+        <servlet-name>ListeClient</servlet-name>
+        <url-pattern>/listeclient</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherClient</servlet-name>
+        <url-pattern>/afficherclient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteClient</servlet-name>
+        <url-pattern>/deleteclient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditionClient</servlet-name>
+        <url-pattern>/editionclient</url-pattern>
+    </servlet-mapping>  
+             
+    <!-- ########### Gestion des commandes ########## -->     
+    <servlet>
+        <servlet-name>CreationCommande</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.commande.CreationCommande</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AfficherCommande</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.commande.AfficherCommande</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListeCommande</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.commande.ListeCommande</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCommande</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.commande.DeleteCommande</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditionCommande</servlet-name>
+        <servlet-class>com.nastib.tpecom.servlets.commande.EditionCommande</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>CreationCommande</servlet-name>
         <url-pattern>/creationcommande</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeCommande</servlet-name>
+        <url-pattern>/listecommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherCommande</servlet-name>
+        <url-pattern>/affichercommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCommande</servlet-name>
+        <url-pattern>/deletecommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditionCommande</servlet-name>
+        <url-pattern>/editioncommande</url-pattern>
+    </servlet-mapping>  
+
+    <!-- Servlet configuration section -->
+    <filter>
+        <filter-name>RestrictionFilter</filter-name>
+        <filter-class>com.nastib.tpecom.filters.RestrictionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RestrictionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Session configuration section -->
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    <!-- jsp files taglibs auto configure -->
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
             <include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
         </jsp-property-group>
-    </jsp-config>  
+    </jsp-config>
+    
+    <!-- Welcome file liste configure -->
     <welcome-file-list>
-
         <welcome-file>accueil.jsp</welcome-file>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.htm</welcome-file>        
-        <welcome-file>default.html</welcome-file>
-        <welcome-file>default.htm</welcome-file>
-        <welcome-file>default.jsp</welcome-file>
-    </welcome-file-list>      
+    </welcome-file-list>
 </web-app>
