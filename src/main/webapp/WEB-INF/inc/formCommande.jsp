@@ -1,20 +1,29 @@
 <h1 class="display-4 text-center">Saisie des Commandes</h1>
 <p class="lead text-center">Formulaire de saisie des commandes.</p>
 <fieldset >
+
     <legend >Information client</legend>
-    <c:if test="${ empty sessionScope.listeClients }" var ="nouveauClient" scope="request">
+
+        <label for="choixNouveauClient">Nouveau client ? <span class="requis">*</span></label>
+        <input type="radio" id="choixNouveauClient" name="choixNouveauClient" value="nouveauClient"   /> Oui
+        <input type="radio" id="choixAncierClient" name="choixNouveauClient" value="ancienClient"  checked /> Non
+        <br/>
+ 
+  
+    <div id="nouveauClient">
+
         <div class="form-check form-check-inline">
             <table>
                 <tr>
-                    <td style="width:630px"><label>Cliquez pour ajouter un nouveau client  </label></td>
+                    <td style="width:630px"><label>Cliquez le bouton plus pour ajouter un client  </label></td>
                     <td style="width:50px ;text-align:right"><a href="<c:url value="/creationclient"/>" class="btn btn-outline-primary " style="padding-top:12px; width: 50px; height: 50px; border-radius: 25px; "><i class="fas fa-plus" ></i></a></td>
                 </tr>
             </table>
         </div>
-    </c:if>
+    </div>        
 
-    <c:if test="${ !nouveauClient }"> 
 
+    <div id="ancienClient">    
         <div class="form-group">
             <label for="client">Id Client  </label>
             <select name="client" id="client" class="form-control"> 
@@ -25,9 +34,10 @@
             </select>
             <small id="dateHelp" class="erreur">${form.erreurs['client']}</small>
         </div>
+    </div>        
 
-    </c:if>
 </fieldset>
+
 <fieldset >
     <legend>Information commande</legend>
     <div class="form-group">
