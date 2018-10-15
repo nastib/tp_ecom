@@ -1,6 +1,5 @@
 package com.nastib.tpecom.servlets;
 
-import com.nastib.tpecom.beans.Client;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.nastib.tpecom.beans.Utilisateur;
 import com.nastib.tpecom.forms.ConnexionForm;
-import java.util.ArrayList;
+import javax.servlet.annotation.WebServlet;
 import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormatter;
 import javax.servlet.http.Cookie;
@@ -20,6 +19,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+@WebServlet( "/connexion" )
 public class Connexion extends HttpServlet {
 
     public static final String ATT_USER                   = "utilisateur";

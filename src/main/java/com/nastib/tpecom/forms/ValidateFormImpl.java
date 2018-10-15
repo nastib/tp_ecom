@@ -1,6 +1,8 @@
 
 package com.nastib.tpecom.forms;
 
+import java.io.InputStream;
+
 
 public class ValidateFormImpl implements ValidateForm {
      /**
@@ -93,5 +95,16 @@ public class ValidateFormImpl implements ValidateForm {
             throw new ValidationException( "Erreur ! l\' "+champ+ " n\' est pas une date valide." );
         }      
     } 
-
+    /*
+     * Valide le fichier envoyé.
+     */
+    public void validationFichier( String nomFichier, InputStream contenuFichier ) throws Exception {
+        if ( nomFichier != null && !nomFichier.trim().isEmpty() ){
+            if( nomFichier.trim().length() < 6 ){
+                throw new Exception( "Attention ! le nom du fichier à envoyer doit avoir au moins 6 caractères." );
+            } else if(contenuFichier == null){
+                throw new Exception( "Attention ! Le fichier est vide. " );
+            }
+        }
+    } 
 }

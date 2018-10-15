@@ -1,6 +1,8 @@
 
 package com.nastib.tpecom.forms;
 
+import java.io.InputStream;
+
 public interface ValidateForm {
     /**
      * Méthode générique de validation d'un champ string du formulaire
@@ -46,4 +48,6 @@ public interface ValidateForm {
      * @throws ValidationException 
      */
     public void validateDateControle(String name, String champ) throws ValidationException;    
+    
+    public void validationFichier( String nomFichier, InputStream contenuFichier ) throws Exception; 
 }

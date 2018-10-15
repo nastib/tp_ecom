@@ -7,7 +7,8 @@ public class Client {
     private String adresseClient; 
     private String telephoneClient; 
     private String emailClient; 
-
+    private String image;
+    
     public String getNomClient() {
         return nomClient;
     }
@@ -51,5 +52,19 @@ public class Client {
     public void setEmailClient(String emailClient) {
         this.emailClient = emailClient;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "nomClient=" + nomClient + ", prenomClient=" + prenomClient + ", adresseClient=" + adresseClient + ", telephoneClient=" + telephoneClient + ", emailClient=" + emailClient + ", image=" + image + '}';
+    }
+    
     
 }

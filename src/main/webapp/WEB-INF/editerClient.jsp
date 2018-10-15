@@ -10,7 +10,7 @@
     <body class="container col-md-10">
         <div><%@ include file ="inc/menu.jsp" %></div>
         <div class="col-md-6 offset-md-3">
-        <form method="post" action="<c:url value='/editionclient?numero=${param.numero}'/>">
+        <form method="post" action="<c:url value='/editionclient?numero=${param.numero}'/>"  enctype="multipart/form-data">
             <%@ include file ="inc/formClient.jsp" %>     
             <input type="submit" value="Valider"  class="btn btn-primary btn-lg " style="margin-right: 10px" />
             <input type="reset" value="Remettre à zéro" class="btn btn-primary btn-lg"/>        

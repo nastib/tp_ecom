@@ -1,47 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!-- Servlet configuration section -->
-    
-    <!-- ########### Gestion du login ########## -->
-    <servlet>
-        <servlet-name>Inscription</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.Inscription</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Connexion</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.Connexion</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Deconnexion</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.Deconnexion</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Accueil</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.Accueil</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Inscription</servlet-name>
-        <url-pattern>/inscription</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Connexion</servlet-name>
-        <url-pattern>/connexion</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Deconnexion</servlet-name>
-        <url-pattern>/deconnexion</url-pattern>
-    </servlet-mapping>
-     <servlet-mapping>
-        <servlet-name>Accueil</servlet-name>
-        <url-pattern>/accueil</url-pattern>
-    </servlet-mapping>
-                           
+    <!-- Servlet configuration section -->
+                             
     <!-- ########### Gestion des clients ########## -->   
-    <servlet>
-        <servlet-name>CreationClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.client.CreationClient</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>ListeClient</servlet-name>
         <servlet-class>com.nastib.tpecom.servlets.client.ListeClient</servlet-class>
@@ -54,16 +16,8 @@
         <servlet-name>DeleteClient</servlet-name>
         <servlet-class>com.nastib.tpecom.servlets.client.DeleteClient</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>EditionClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.client.EditionClient</servlet-class>
-    </servlet>
-    
+  
     <servlet-mapping>
-        <servlet-name>CreationClient</servlet-name>
-        <url-pattern>/creationclient</url-pattern>
-    </servlet-mapping>    
-     <servlet-mapping>
         <servlet-name>ListeClient</servlet-name>
         <url-pattern>/listeclient</url-pattern>
     </servlet-mapping>
@@ -74,11 +28,7 @@
     <servlet-mapping>
         <servlet-name>DeleteClient</servlet-name>
         <url-pattern>/deleteclient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditionClient</servlet-name>
-        <url-pattern>/editionclient</url-pattern>
-    </servlet-mapping>  
+    </servlet-mapping> 
              
     <!-- ########### Gestion des commandes ########## -->     
     <servlet>
@@ -123,7 +73,7 @@
         <url-pattern>/editioncommande</url-pattern>
     </servlet-mapping>  
 
-    <!-- Servlet configuration section -->
+    <!-- Filter configuration section -->
     <filter>
         <filter-name>RestrictionFilter</filter-name>
         <filter-class>com.nastib.tpecom.filters.RestrictionFilter</filter-class>
@@ -148,7 +98,9 @@
         <filter-name>Set Character Encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
+
+        
     <!-- Session configuration section -->
     <session-config>
         <session-timeout>

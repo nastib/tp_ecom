@@ -1,5 +1,5 @@
 <div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius: 10px">
   <a class="navbar-brand" href="<c:url value="/accueil"/>">
   <img src="resources/img/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>

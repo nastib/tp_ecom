@@ -29,6 +29,7 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Photo</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Adresse</th>
@@ -42,6 +43,12 @@
                 <c:forEach var="item" items="${sessionScope.listeClients}" varStatus="status">
                     <tr>  
                         <td><strong><c:out value="${status.count}"/> </strong></td>
+                        <c:if test="${ !empty item.image}">
+                             <td> <img src="resources/fichiers/${item.image}" alt="photo" style="width: 30px; height: 30px; border-radius: 25px"/></td>  
+                        </c:if>
+                        <c:if test="${ empty item.image}">
+                             <td>  </td>  
+                        </c:if>                             
                         <td> <c:out value="${item.nomClient}"></c:out> </td>                                 
                         <td> <c:out value="${item.prenomClient}"></c:out> </td>     
                         <td> <c:out value="${item.adresseClient}"></c:out> </td>     
