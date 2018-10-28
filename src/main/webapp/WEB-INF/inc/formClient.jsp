@@ -8,33 +8,32 @@
     <div class="col-md-12" style="display : flex">
         <div class="col-md-9">
             <div class="form-group">
-                <label for="nomClient">Nom <span class="requis">*</span></label>
-                <input type="text" id="nomClient" name="nomClient" value="<c:out value="${client.nomClient}"/>"  size="20" maxlength="20" class="form-control"/>
-                <small id="nomHelp" class="erreur">${form.erreurs['nomClient']}</small>
+                <label for="nom">Nom <span class="requis">*</span></label>
+                <input type="text" id="nom" name="nom" value="<c:out value="${client.nom}"/>"  size="20" maxlength="20" class="form-control"/>
+                <small id="nomHelp" class="erreur">${form.erreurs['nom']}</small>
             </div>
 
             <div class="form-group">
-                <label for="prenomClient">Prénom <span class="requis">*</span></label>
-                <input type="text" id="prenomClient" name="prenomClient" value="<c:out value="${client.prenomClient}"/>" size="20" maxlength="20" class="form-control"/>
-                <small id="prenomHelp" class="erreur">${form.erreurs['prenomClient']}</small>
+                <label for="prenom">Prénom <span class="requis">*</span></label>
+                <input type="text" id="prenom" name="prenom" value="<c:out value="${client.prenom}"/>" size="20" maxlength="20" class="form-control"/>
+                <small id="prenomHelp" class="erreur">${form.erreurs['prenom']}</small>
             </div>
 
             <div class="form-group">
-                <label for="adresseClient">Adresse de livraison <span class="requis">*</span></label>
-                <input type="text" id="adresseClient" name="adresseClient" value="<c:out value="${client.adresseClient}"/>" size="20" maxlength="20" class="form-control"/>
-                <small id="adresseHelp" class="erreur">${form.erreurs['adresseClient']}</small>
+                <label for="adresse">Adresse de livraison <span class="requis">*</span></label>
+                <input type="text" id="adresse" name="adresse" value="<c:out value="${client.adresse}"/>" size="20" maxlength="20" class="form-control"/>
+                <small id="adresseHelp" class="erreur">${form.erreurs['adresse']}</small>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Numéro de téléphone <span class="requis">*</span></label>
+                <input type="text" id="telephone" name="telephone" value="<c:out value="${requestScope.client.telephone}"/>" size="20" maxlength="20" class="form-control"/>
+                <small id="telephoneHelp" class="erreur">${form.erreurs['telephone']}</small>
             </div>
 
             <div class="form-group">
-                <label for="telephoneClient">Numéro de téléphone <span class="requis">*</span></label>
-                <input type="text" id="telephoneClient" name="telephoneClient" value="<c:out value="${client.telephoneClient}"/>" size="20" maxlength="20" class="form-control"/>
-                <small id="telephoneHelp" class="erreur">${form.erreurs['telephoneClient']}</small>
-            </div>
-
-            <div class="form-group">
-                <label for="emailClient">Adresse email</label>
-                <input type="text" id="emailClient" name="emailClient" value="<c:out value="${client.emailClient}"/>" size="20" maxlength="60" class="form-control"/>
-                <small id="emailHelp" class="erreur">${form.erreurs['emailClient']}</small>
+                <label for="email">Adresse email</label>
+                <input type="text" id="email" name="email" value="<c:out value="${client.email}"/>" size="20" maxlength="60" class="form-control"/>
+                <small id="emailHelp" class="erreur">${form.erreurs['email']}</small>
             </div>
 
             <div class="form-group">
@@ -47,7 +46,7 @@
         </div>
         <div class="col-md-3">
             <c:if test="${!empty client.image}">
-                <a href="<c:out value="/fichiers/${client.image}"/>"><img src="resources/fichiers/${client.image}" alt="photo" class="float-right" style="width: 120px; height: 120px; border-radius: 10px"/></a>
+                <a href="<c:out value="resources/fichiers/images/${client.image}"/>"><img src="resources/fichiers/images/${client.image}" alt="photo" class="float-right" style="width: 120px; height: 120px; border-radius: 10px"/></a>
                 </c:if>
         </div>  
     </div>

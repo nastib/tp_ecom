@@ -32,30 +32,34 @@
                         <table class="table table-striped" >
                             <tbody>            
                                 <tr>
+                                    <td class="colon">Id :</td>
+                                    <td class="text-left"><c:out value="${requestScope.client.id}"/></td>
+                                </tr>
+                                <tr>
                                     <td class="colon">Nom :</td>
-                                    <td class="text-left"><c:out value="${requestScope.client.nomClient}"/></td>
+                                    <td class="text-left"><c:out value="${requestScope.client.nom}"/></td>
                                 </tr>
                                 <tr>
                                     <td class="colon">Prenom :</td>
-                                    <td class="text-left"><c:out value="${requestScope.client.prenomClient}"/></td>
+                                    <td class="text-left"><c:out value="${requestScope.client.prenom}"/></td>
                                 </tr>
                                 <tr>
                                     <td class="colon">Adresse : </td>
-                                    <td class="text-left"><c:out value="${requestScope.client.adresseClient}"/></td>
+                                    <td class="text-left"><c:out value="${requestScope.client.adresse}"/></td>
                                 </tr>
                                 <tr>
                                     <td class="colon">Télephone : </td>
-                                    <td class="text-left"><c:out value="${requestScope.client.telephoneClient}"/></td>
+                                    <td class="text-left"><c:out value="${requestScope.client.telephone}"/></td>
                                 </tr>
                                 <tr>
                                     <td class="colon">Email : </td>
-                                    <td class="text-left"><c:out value="${requestScope.client.emailClient}"/></td>
+                                    <td class="text-left"><c:out value="${requestScope.client.email}"/></td>
                                 </tr>                        
                             </tbody>
                         </table>   
                     </div>
                     <div class="col-md-3">
-                        <a href="<c:out value="/fichiers/${requestScope.client.image}"/>"><img src="resources/fichiers/${requestScope.client.image}" alt="photo" class="float-right" style="width: 120px; height: 120px; border-radius: 10px"/></a>
+                        <a href="<c:out value="resources/fichiers/images/${requestScope.client.image}"/>"><img src="resources/fichiers/images/${requestScope.client.image}" alt="photo" class="float-right" style="width: 120px; height: 120px; border-radius: 10px"/></a>
                     </div> 
                 </div>
             </div> 

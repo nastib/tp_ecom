@@ -10,11 +10,11 @@
             .btn { width: 50px; height: 50px; border-radius: 25px; }
             td span { display: inline-block; width: 30px; }
         </style>        
-        <title>Liste Client</title>
+        <title>Liste des Clients</title>
     </head>
     <body class="container col-md-10">
         <div><%@ include file ="inc/menu.jsp" %></div>
-        <h1 class="display-4 text-center">Liste des clients</h1>
+        <h1 class="display-4 text-center">Liste des Clients</h1>
         <div class="row">
             <div class="col-md-11">
                 <small id="submitHelp" class="badge badge-success">${form.resultat}</small>
@@ -40,25 +40,25 @@
             </thead>
             <tbody>
 
-                <c:forEach var="item" items="${sessionScope.listeClients}" varStatus="status">
+                <c:forEach var="client" items="${sessionScope.clients}" varStatus="status">
                     <tr>  
-                        <td><strong><c:out value="${status.count}"/> </strong></td>
-                        <c:if test="${ !empty item.image}">
-                             <td> <img src="resources/fichiers/${item.image}" alt="photo" style="width: 30px; height: 30px; border-radius: 25px"/></td>  
+                        <td><strong><c:out value="${client.value.id}"/> </strong></td>
+                        <c:if test="${ !empty client.value.image}">
+                             <td> <img src="resources/fichiers/images/${client.value.image}" alt="photo" style="width: 30px; height: 30px; border-radius: 25px"/></td>  
                         </c:if>
-                        <c:if test="${ empty item.image}">
+                        <c:if test="${ empty client.value.image}">
                              <td>  </td>  
                         </c:if>                             
-                        <td> <c:out value="${item.nomClient}"></c:out> </td>                                 
-                        <td> <c:out value="${item.prenomClient}"></c:out> </td>     
-                        <td> <c:out value="${item.adresseClient}"></c:out> </td>     
-                        <td> <c:out value="${item.telephoneClient}"></c:out> </td>     
-                        <td> <c:out value="${item.emailClient}"></c:out> </td>     
+                        <td> <c:out value="${client.value.nom}"></c:out> </td>                                 
+                        <td> <c:out value="${client.value.prenom}"></c:out> </td>     
+                        <td> <c:out value="${client.value.adresse}"></c:out> </td>     
+                        <td> <c:out value="${client.value.telephone}"></c:out> </td>     
+                        <td> <c:out value="${client.value.email}"></c:out> </td>     
                         <td class="text-center">
-                            <span><a href="<c:url value="/afficherclient?numero=${status.count}"/>"><i class="far fa-eye" ></i></a> </span>  
-                            <span><a href="<c:url value="/editionclient?numero=${status.count}"/>"><i class="fas fa-pencil-alt" ></i></a> </span>  
-                            <span><a href="<c:url value="/deleteclient?numero=${status.count}"/>"><i class="fas fa-times" style="color:red"></i></a></span>
-                            <span><a href="<c:url value="/printcommande?numero=${status.count}"/>"><i class="fas fa-print" ></i></a></span>
+                            <span><a href="<c:url value="/afficherclient?idClient=${client.value.id}"/>"><i class="far fa-eye" ></i></a> </span>  
+                            <span><a href="<c:url value="/editionclient?idClient=${client.value.id}"/>"><i class="fas fa-pencil-alt" ></i></a> </span>  
+                            <span><a href="<c:url value="/suppressionclient?idClient=${client.value.id}"/>"><i class="fas fa-times" style="color:red"></i></a></span>
+                            <span><a href="<c:url value="/sousmenuclient"/>"><i class="fas fa-ellipsis-v"></i></a></span>
                         </td>            
                     </tr>                        
                 </c:forEach>

@@ -1,24 +1,31 @@
 
 package com.nastib.tpecom.beans;
 
+import java.io.Serializable;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
-public class Commande {
+public class Commande implements Serializable {
 
+    private long id;
     private Client client;
-    private String dateCommande;
-    private String modePaiementCommande;
-    private String montantCommande;
-    private String statutPaiementCommande;
-    private String modeLivraisonCommande;
-    private String statutLivraisonCommande;
+    private DateTime date;
+    private Double montant;    
+    private String modePaiement;
+    private String statutPaiement;
+    private String modeLivraison;
+    private String statutLivraison;
+    private final static long serialVersionUID = 100211;
 
-    public Commande() {}
+    public Long getId() {
+        return id;
+    }
 
-    public String getDateCommande() {
-        return dateCommande;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public DateTime getDate() {
+        return date;
     }
 
     public Client getClient() {
@@ -29,58 +36,48 @@ public class Commande {
         this.client = client;
     } 
     
-    public void setDateCommande(String dateCommande) {
-
-        if(dateCommande == null || dateCommande.isEmpty()){
-           /* Récupération de la date courante */
-           DateTime dt = new DateTime();
-           /* Conversion de la date en String selon le format défini */
-           DateTimeFormatter formatter = DateTimeFormat.forPattern( "dd/MM/yyyy HH:mm:ss" );
-           String date = dt.toString( formatter );
-           this.dateCommande = date;
-        }else{
-            this.dateCommande = dateCommande;
-        }
+    public void setDate(DateTime dateCommande) {
+        this.date = dateCommande;
     }
 
-    public String getModePaiementCommande() {
-        return modePaiementCommande;
+    public String getModePaiement() {
+        return modePaiement;
     }
 
-    public void setModePaiementCommande(String modePaiementCommande) {
-        this.modePaiementCommande = modePaiementCommande;
+    public void setModePaiement(String modePaiementCommande) {
+        this.modePaiement = modePaiementCommande;
     }
 
-    public String getMontantCommande() {
-        return montantCommande;
+    public Double getMontant() {
+        return montant;
     }
 
-    public void setMontantCommande(String montantCommande) {
-        this.montantCommande = montantCommande;
+    public void setMontant(Double montant) {
+        this.montant = montant;
     }
 
-    public String getStatutPaiementCommande() {
-        return statutPaiementCommande;
+    public String getStatutPaiement() {
+        return statutPaiement;
     }
 
-    public void setStatutPaiementCommande(String statutPaiementCommande) {
-        this.statutPaiementCommande = statutPaiementCommande;
+    public void setStatutPaiement(String statutPaiementCommande) {
+        this.statutPaiement = statutPaiementCommande;
     }
 
-    public String getModeLivraisonCommande() {
-        return modeLivraisonCommande;
+    public String getModeLivraison() {
+        return modeLivraison;
     }
 
-    public void setModeLivraisonCommande(String modeLivraisonCommande) {
-        this.modeLivraisonCommande = modeLivraisonCommande;
+    public void setModeLivraison(String modeLivraisonCommande) {
+        this.modeLivraison = modeLivraisonCommande;
     }
 
-    public String getStatutLivraisonCommande() {
-        return statutLivraisonCommande;
+    public String getStatutLivraison() {
+        return statutLivraison;
     }
 
-    public void setStatutLivraisonCommande(String statutLivraisonCommande) {
-        this.statutLivraisonCommande = statutLivraisonCommande;
+    public void setStatutLivraison(String statutLivraisonCommande) {
+        this.statutLivraison = statutLivraisonCommande;
     }
 
     

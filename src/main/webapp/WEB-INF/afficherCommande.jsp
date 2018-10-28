@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,54 +33,62 @@
 
                 <tbody>
                     <tr>
-                        <td colspan="2"><b>** Client **</b></td>
+                        <td colspan="2" style="color:blue"><b>** CLIENT **</b></td>
+                    </tr>
+                    <tr>
+                        <td class="colon">Id :</td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.id}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Nom :</td>
-                        <td class="text-left"><c:out value="${requestScope.commande.client.nomClient}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.nom}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Prenom :</td>
-                        <td class="text-left"><c:out value="${requestScope.commande.client.prenomClient}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.prenom}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Adresse : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.client.adresseClient}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.adresse}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Télephone : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.client.telephoneClient}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.telephone}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Email : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.client.emailClient}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.client.email}"/></td>
                     </tr>   
                     <tr>
-                        <td colspan="2"><b>** Commande **</b></td>
+                        <td colspan="2" style="color:blue"><b>** COMMANDE **</b></td>
+                    </tr>
+                    <tr>
+                        <td class="colon">Id :</td>
+                        <td class="text-left">${requestScope.commande.id}</td>
                     </tr>
                     <tr>
                         <td class="colon">Date :</td>
-                        <td class="text-left">${requestScope.commande.dateCommande}</td>
+                        <td class="text-left"><joda:format value="${commande.date }" pattern="dd/MM/yyyy HH:mm:ss"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Montant :</td>
-                        <td class="text-left">${requestScope.commande.montantCommande}</td>
+                        <td class="text-left">${requestScope.commande.montant}</td>
                     </tr>   
                     <tr>
                         <td class="colon">Mode paiement :</td>
-                        <td class="text-left"><c:out value="${requestScope.commande.modePaiementCommande}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.modePaiement}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Statut de paiement : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.statutPaiementCommande}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.statutPaiement}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Mode livraison : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.modeLivraisonCommande}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.modeLivraison}"/></td>
                     </tr>
                     <tr>
                         <td class="colon">Statut livraison : </td>
-                        <td class="text-left"><c:out value="${requestScope.commande.statutLivraisonCommande}"/></td>
+                        <td class="text-left"><c:out value="${requestScope.commande.statutLivraison}"/></td>
                     </tr>                         
                 </tbody>
             </table>                              

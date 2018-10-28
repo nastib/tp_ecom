@@ -16,10 +16,10 @@
       </li>        
       <c:if test="${ !empty sessionScope.sessionUtilisateur}">
       <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/listeclient"/>">Client <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<c:url value="/listeclients"/>">Client <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/listecommande"/>">Commande</a>
+          <a class="nav-link" href="<c:url value="/listecommandes"/>">Commande</a>
       </li> 
       </c:if>
     </ul>

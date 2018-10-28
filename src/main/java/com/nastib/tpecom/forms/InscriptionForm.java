@@ -1,9 +1,12 @@
 package com.nastib.tpecom.forms;
 
 import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.dao.UtilisateurDao;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 
 public final class InscriptionForm {
 
@@ -11,10 +14,16 @@ public final class InscriptionForm {
     private static final String CHAMP_PASS = "motdepasse";
     private static final String CHAMP_CONF = "confirmation";
     private static final String CHAMP_NOM = "nom";
-
+    private static final String ALGO_CHIFFREMENT = "SHA-256";
+    
+    private UtilisateurDao  utilisateurDao;
     private String resultat;
     private Map<String, String> erreurs = new HashMap<String, String>();
 
+    public InscriptionForm( UtilisateurDao utilisateurDao ) {
+        this.utilisateurDao = utilisateurDao;
+    }
+    
     public String getResultat() {
         return resultat;
     }
@@ -22,7 +31,7 @@ public final class InscriptionForm {
     public Map<String, String> getErreurs() {
         return erreurs;
     }
-
+   
     public Utilisateur inscrireUtilisateur(HttpServletRequest request) {
         String email = getValeurChamp(request, CHAMP_EMAIL);
         String motDePasse = getValeurChamp(request, CHAMP_PASS);
@@ -32,61 +41,107 @@ public final class InscriptionForm {
         Utilisateur utilisateur = new Utilisateur();
 
         try {
-            validationEmail(email);
-        } catch (Exception e) {
-            setErreur(CHAMP_EMAIL, e.getMessage());
-        }
-        utilisateur.setEmail(email);
+            traiterEmail( email, utilisateur );
+            traiterMotsDePasse( motDePasse, confirmation, utilisateur );
+            traiterNom( nom, utilisateur );        
 
-        try {
-            validationMotsDePasse(motDePasse, confirmation);
-        } catch (Exception e) {
-            setErreur(CHAMP_PASS, e.getMessage());
-            setErreur(CHAMP_CONF, null);
+            if (erreurs.isEmpty()) {
+                utilisateurDao.creer( utilisateur );
+                resultat = "Succès de l'inscription.";
+            } else {
+                resultat = "Échec de l'inscription.";
+            }
+        } catch ( DAOException e ) {
+            resultat = "Échec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
+            e.printStackTrace();
         }
-        utilisateur.setMotDePasse(motDePasse);
-
-        try {
-            validationNom(nom);
-        } catch (Exception e) {
-            setErreur(CHAMP_NOM, e.getMessage());
-        }
-        utilisateur.setNom(nom);
-
-        if (erreurs.isEmpty()) {
-            resultat = "Succès de l'inscription.";
-        } else {
-            resultat = "Échec de l'inscription.";
-        }
-
         return utilisateur;
     }
 
-    private void validationEmail(String email) throws Exception {
-        if (email != null) {
-            if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-                throw new Exception("Merci de saisir une adresse mail valide.");
-            }
-        } else {
-            throw new Exception("Merci de saisir une adresse mail.");
+    /*
+     * Appel à la validation de l'adresse email reçue et initialisation de la
+     * propriété email du bean
+     */
+    private void traiterEmail( String email, Utilisateur utilisateur ) {
+        try {
+            validationEmail( email );
+        } catch ( FormValidationException e ) {
+            setErreur( CHAMP_EMAIL, e.getMessage() );
         }
+        utilisateur.setEmail( email );
     }
 
-    private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception {
+    /*
+     * Appel à la validation des mots de passe reçus, chiffrement du mot de
+     * passe et initialisation de la propriété motDePasse du bean
+     */
+    private void traiterMotsDePasse( String motDePasse, String confirmation, Utilisateur utilisateur ) {
+        try {
+            validationMotsDePasse( motDePasse, confirmation );
+        } catch ( FormValidationException e ) {
+            setErreur( CHAMP_PASS, e.getMessage() );
+            setErreur( CHAMP_CONF, null );
+        }
+
+        /*
+         * Utilisation de la bibliothèque Jasypt pour chiffrer le mot de passe
+         * efficacement.
+         * 
+         * L'algorithme SHA-256 est ici utilisé, avec par défaut un salage
+         * aléatoire et un grand nombre d'itérations de la fonction de hashage.
+         * 
+         * La String retournée est de longueur 56 et contient le hash en Base64.
+         */
+        ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+        passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
+        passwordEncryptor.setPlainDigest( false );
+        String motDePasseChiffre = passwordEncryptor.encryptPassword( motDePasse );
+
+        utilisateur.setMotDePasse( motDePasseChiffre );
+    }    
+ 
+    
+    /*
+     * Appel à la validation de l'adresse email reçue et initialisation de la
+     * propriété email du bean
+     */
+    private void traiterNom( String nom, Utilisateur utilisateur ) {
+        try {
+            validationNom( nom );
+        } catch ( FormValidationException e ) {
+            setErreur( CHAMP_NOM, e.getMessage() );
+        }
+        utilisateur.setNom( nom );
+    }
+   
+    /* Validation de l'adresse email */
+    private void validationEmail( String email ) throws FormValidationException {
+        if ( email != null && !email.trim().isEmpty()) {
+            if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
+                throw new FormValidationException( "Merci de saisir une adresse mail valide." );
+            } else if ( utilisateurDao.trouver( email ) != null ) {
+                throw new FormValidationException( "Cette adresse email est déjà utilisée, merci d'en choisir une autre." );
+            }
+        } else {
+            throw new FormValidationException( "Merci de saisir une adresse mail." );
+        }
+    }    
+
+    private void validationMotsDePasse(String motDePasse, String confirmation) throws FormValidationException {
         if (motDePasse != null && confirmation != null) {
             if (!motDePasse.equals(confirmation)) {
-                throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+                throw new FormValidationException("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
             } else if (motDePasse.length() < 3) {
-                throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
+                throw new FormValidationException("Les mots de passe doivent contenir au moins 3 caractères.");
             }
         } else {
-            throw new Exception("Merci de saisir et confirmer votre mot de passe.");
+            throw new FormValidationException("Merci de saisir et confirmer votre mot de passe.");
         }
     }
 
-    private void validationNom(String nom) throws Exception {
+    private void validationNom(String nom) throws FormValidationException {
         if (nom != null && nom.length() < 3) {
-            throw new Exception("Le nom d'utilisateur doit contenir au moins 3 caractères.");
+            throw new FormValidationException("Le nom d'utilisateur doit contenir au moins 3 caractères.");
         }
     }
 

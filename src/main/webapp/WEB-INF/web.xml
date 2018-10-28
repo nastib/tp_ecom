@@ -1,87 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
-    <!-- Servlet configuration section -->
-                             
-    <!-- ########### Gestion des clients ########## -->   
-    <servlet>
-        <servlet-name>ListeClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.client.ListeClient</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AfficherClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.client.AfficherClient</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteClient</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.client.DeleteClient</servlet-class>
-    </servlet>
-  
-    <servlet-mapping>
-        <servlet-name>ListeClient</servlet-name>
-        <url-pattern>/listeclient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AfficherClient</servlet-name>
-        <url-pattern>/afficherclient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteClient</servlet-name>
-        <url-pattern>/deleteclient</url-pattern>
-    </servlet-mapping> 
-             
-    <!-- ########### Gestion des commandes ########## -->     
-    <servlet>
-        <servlet-name>CreationCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.commande.CreationCommande</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AfficherCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.commande.AfficherCommande</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListeCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.commande.ListeCommande</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.commande.DeleteCommande</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditionCommande</servlet-name>
-        <servlet-class>com.nastib.tpecom.servlets.commande.EditionCommande</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>CreationCommande</servlet-name>
-        <url-pattern>/creationcommande</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListeCommande</servlet-name>
-        <url-pattern>/listecommande</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AfficherCommande</servlet-name>
-        <url-pattern>/affichercommande</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteCommande</servlet-name>
-        <url-pattern>/deletecommande</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditionCommande</servlet-name>
-        <url-pattern>/editioncommande</url-pattern>
-    </servlet-mapping>  
+<web-app version="3.1" 
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
     <!-- Filter configuration section -->
-    <filter>
-        <filter-name>RestrictionFilter</filter-name>
-        <filter-class>com.nastib.tpecom.filters.RestrictionFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>RestrictionFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
     <filter>
         <filter-name>Set Character Encoding</filter-name>
         <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
@@ -98,9 +21,7 @@
         <filter-name>Set Character Encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
-        
+    
     <!-- Session configuration section -->
     <session-config>
         <session-timeout>
@@ -116,8 +37,8 @@
         </jsp-property-group>
     </jsp-config>
     
-    <!-- Welcome file liste configure -->
+    <!-- Welcome file liste configure 
     <welcome-file-list>
         <welcome-file>accueil.jsp</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list>-->
 </web-app>

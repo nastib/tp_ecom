@@ -1,56 +1,69 @@
 
 package com.nastib.tpecom.beans;
 
-public class Client {
-    private String nomClient; 
-    private String prenomClient; 
-    private String adresseClient; 
-    private String telephoneClient; 
-    private String emailClient; 
+import java.io.Serializable;
+
+public class Client implements Serializable {
+    private final static long serialVersionUID = 100210;
+    private Long id;
+    private String nom; 
+    private String prenom; 
+    private String adresse; 
+    private String telephone; 
+    private String email; 
     private String image;
-    
-    public String getNomClient() {
-        return nomClient;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setNomClient(String nomClient) throws BeanException {
+    public void setId(Long id) {
+        this.id = id;
+ 
+    }
+    
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nomClient) throws BeanException {
         if ( nomClient != null && nomClient.length() <= 15) {
-            this.nomClient = nomClient;
+            this.nom = nomClient;
         } else {
             throw new BeanException("Attention ! \n Le nom est trop grand ! (15 caractères maximum).");
         }
     }
 
-    public String getPrenomClient() {
-        return prenomClient;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setPrenomClient(String prenomClient) {
-        this.prenomClient = prenomClient;
+    public void setPrenom(String prenomClient) {
+        this.prenom = prenomClient;
     }
 
-    public String getAdresseClient() {
-        return adresseClient;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setAdresseClient(String adresseClient) {
-        this.adresseClient = adresseClient;
+    public void setAdresse(String adresseClient) {
+        this.adresse = adresseClient;
     }
 
-    public String getTelephoneClient() {
-        return telephoneClient;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setTelephoneClient(String telephoneClient) {
-        this.telephoneClient = telephoneClient;
+    public void setTelephone(String telephoneClient) {
+        this.telephone = telephoneClient;
     }
 
-    public String getEmailClient() {
-        return emailClient;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailClient(String emailClient) {
-        this.emailClient = emailClient;
+    public void setEmail(String emailClient) {
+        this.email = emailClient;
     }
 
     public String getImage() {
@@ -63,7 +76,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + "nomClient=" + nomClient + ", prenomClient=" + prenomClient + ", adresseClient=" + adresseClient + ", telephoneClient=" + telephoneClient + ", emailClient=" + emailClient + ", image=" + image + '}';
+        return "Client{" + "nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", image=" + image + '}';
     }
     
     

@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,19 +39,20 @@
             </thead>
             <tbody>
 
-                <c:forEach var="item" items="${sessionScope.listeCommandes}" varStatus="status">
+                <c:forEach var="commande" items="${sessionScope.commandes}" varStatus="status">
+                    <c:set var="date" value="<joda:format value='${commande.value.date }' pattern='dd/MM/yyyy HH:mm:ss'></joda:format>"/>
                     <tr>  
-                        <td><strong><c:out value="${status.count}"/> </strong></td>                                                       
-                        <td> <c:out value="${item.dateCommande}"></c:out> </td>    
-                        <td> <c:out value="${item.client.nomClient} ${item.client.prenomClient}"></c:out> </td>  
-                        <td> <c:out value="${item.montantCommande}"></c:out> </td>     
-                        <td> <c:out value="${item.modePaiementCommande}"></c:out> </td>     
-                        <td> <c:out value="${item.modeLivraisonCommande}"></c:out> </td>     
+                        <td><strong><c:out value="${commande.value.id}"/> </strong></td>
+                        <td><joda:format value='${commande.value.date }' pattern='dd/MM/yyyy HH:mm:ss'/></td> 
+                        <td> <c:out value="${commande.value.client.nom} ${commande.value.client.prenom}"></c:out> </td>  
+                        <td> <c:out value="${commande.value.montant}"></c:out> </td>     
+                        <td> <c:out value="${commande.value.modePaiement}"></c:out> </td>     
+                        <td> <c:out value="${commande.value.modeLivraison}"></c:out> </td>     
                         <td class="text-center">
-                            <span><a href="<c:url value="/affichercommande?numero=${status.count}"/>"><i class="far fa-eye" ></i></a></span>   
-                            <span><a href="<c:url value="/editioncommande?numero=${status.count}"/>"><i class="fas fa-pencil-alt" ></i></a></span>   
-                            <span><a href="<c:url value="/deletecommande?numero=${status.count}"/>"><i class="fas fa-times" style="color:red"></i></a></span>
-                            <span><a href="<c:url value="/printcommande?numero=${status.count}"/>"><i class="fas fa-print" ></i></a></span>
+                            <span><a href="<c:url value="/affichercommande?idCommande=${commande.value.id}"/>"><i class="far fa-eye" ></i></a></span>   
+                            <span><a href="<c:url value="/editioncommande?idCommande=${commande.value.id}"/>"><i class="fas fa-pencil-alt" ></i></a></span>   
+                            <span><a href="<c:url value="/suppressioncommande?idCommande=${commande.value.id}"/>"><i class="fas fa-times" style="color:red"></i></a></span>
+                            <span><a href="<c:url value="/sousmenucommande"/>"><i class="fas fa-ellipsis-v"></i></a></span>
                         </td>
                         </tr>              
                 </c:forEach>

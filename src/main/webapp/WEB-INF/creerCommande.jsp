@@ -1,4 +1,4 @@
-
+             
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +12,7 @@
         <div>
             <div><%@ include file ="inc/menu.jsp" %></div>
             <div class="col-md-6 offset-md-3">
+
             <form method="post" action="<c:url value="/creationcommande"/>" >
 
                 <%@ include file ="inc/formCommande.jsp" %>    
@@ -21,13 +22,7 @@
             </form>
             </div>
         </div>
-        <%-- Inclusion de la bibliothèque jQuery. Vous trouverez des cours sur JavaScript et jQuery aux adresses suivantes :
-               - http://www.siteduzero.com/tutoriel-3-309961-dynamisez-vos-sites-web-avec-javascript.html 
-               - http://www.siteduzero.com/tutoriel-3-659477-un-site-web-dynamique-avec-jquery.html 
-               
-             Si vous ne souhaitez pas télécharger et ajouter jQuery à votre projet, vous pouvez utiliser la version fournie directement en ligne par Google :
-             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
-        --%>
+
         <script src="<c:url value="resources/assets/js/jquery-1.12.4.min.js"/>"></script>
         
         <%-- Petite fonction jQuery permettant le remplacement de la première partie du formulaire par la liste déroulante, au clic sur le bouton radio. --%>

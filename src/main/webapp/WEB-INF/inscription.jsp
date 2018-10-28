@@ -22,7 +22,7 @@
                 <div class="form-group">
                 <label for="email">Adresse email <span class="requis">*</span></label>
                 <input type="email" id="email" name="email" value="<c:out value="${utilisateur.email}"/>" size="20" maxlength="60" class="form-control"/>
-                <small class="erreur">${erreurs['email']}</small>
+                <small class="erreur">${form.erreurs['email']}</small>
                 </div>
 
                 <div class="form-group">
