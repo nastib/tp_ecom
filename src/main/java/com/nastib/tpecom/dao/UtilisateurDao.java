@@ -1,7 +1,7 @@
 
 package com.nastib.tpecom.dao;
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 
 public interface UtilisateurDao {
 

@@ -1,8 +1,8 @@
 
 package com.nastib.tpecom.dao;
 
-import com.nastib.tpecom.beans.BeanException;
-import com.nastib.tpecom.beans.Client;
+import com.nastib.tpecom.entities.BeanException;
+import com.nastib.tpecom.entities.Client;
 import static com.nastib.tpecom.dao.DAOUtilitaire.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

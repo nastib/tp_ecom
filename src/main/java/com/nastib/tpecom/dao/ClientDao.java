@@ -1,7 +1,7 @@
 
 package com.nastib.tpecom.dao;
 
-import com.nastib.tpecom.beans.Client;
+import com.nastib.tpecom.entities.Client;
 import java.util.List;
 
 public interface ClientDao {

@@ -1,6 +1,6 @@
 package com.nastib.tpecom.servlets.client;
 
-import com.nastib.tpecom.beans.Client;
+import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.DAOFactory;
 import com.nastib.tpecom.forms.CreationClientForm;

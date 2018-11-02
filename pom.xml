@@ -76,6 +76,13 @@
             <version>1.9.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jolbox/bonecp -->
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.8.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
      
     <!-- =============================================================== -->

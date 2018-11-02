@@ -1,7 +1,7 @@
 package com.nastib.tpecom.forms;
 
-import com.nastib.tpecom.beans.BeanException;
-import com.nastib.tpecom.beans.Client;
+import com.nastib.tpecom.entities.BeanException;
+import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.DAOException;
 import eu.medsea.mimeutil.MimeUtil;

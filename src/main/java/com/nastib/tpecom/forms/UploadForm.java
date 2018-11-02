@@ -2,7 +2,7 @@
 package com.nastib.tpecom.forms;
 
 
-import com.nastib.tpecom.beans.Fichier;
+import com.nastib.tpecom.entities.Fichier;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

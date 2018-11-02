@@ -1,7 +1,7 @@
 
 package com.nastib.tpecom.dao;
 
-import com.nastib.tpecom.beans.Commande;
+import com.nastib.tpecom.entities.Commande;
 import java.util.List;
 
 public interface CommandeDao {

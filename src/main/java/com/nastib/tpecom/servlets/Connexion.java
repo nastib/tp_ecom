@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 import com.nastib.tpecom.forms.ConnexionForm;
 import javax.servlet.annotation.WebServlet;
 import org.joda.time.Period;

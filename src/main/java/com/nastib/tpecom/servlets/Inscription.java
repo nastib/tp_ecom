@@ -1,7 +1,7 @@
 package com.nastib.tpecom.servlets;
 
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 import com.nastib.tpecom.dao.DAOFactory;
 import com.nastib.tpecom.dao.UtilisateurDao;
 import com.nastib.tpecom.forms.InscriptionForm;

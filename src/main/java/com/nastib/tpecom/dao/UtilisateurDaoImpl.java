@@ -1,7 +1,7 @@
 
 package com.nastib.tpecom.dao;
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 import static com.nastib.tpecom.dao.DAOUtilitaire.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

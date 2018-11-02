@@ -1,6 +1,6 @@
 package com.nastib.tpecom.servlets;
 
-import com.nastib.tpecom.beans.Fichier;
+import com.nastib.tpecom.entities.Fichier;
 import com.nastib.tpecom.forms.UploadForm;
 
 import java.io.IOException;

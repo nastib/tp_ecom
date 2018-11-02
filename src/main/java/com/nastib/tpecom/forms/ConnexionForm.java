@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 
 public final class ConnexionForm {
     private static final String CHAMP_EMAIL  = "email";

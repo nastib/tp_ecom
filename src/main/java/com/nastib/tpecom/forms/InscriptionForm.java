@@ -1,6 +1,6 @@
 package com.nastib.tpecom.forms;
 
-import com.nastib.tpecom.beans.Utilisateur;
+import com.nastib.tpecom.entities.Utilisateur;
 import com.nastib.tpecom.dao.DAOException;
 import com.nastib.tpecom.dao.UtilisateurDao;
 import java.util.HashMap;

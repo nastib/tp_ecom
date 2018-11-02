@@ -1,5 +1,5 @@
 
-package com.nastib.tpecom.beans;
+package com.nastib.tpecom.entities;
 
 public class Fichier {
 

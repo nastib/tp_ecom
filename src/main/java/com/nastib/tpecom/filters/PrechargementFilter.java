@@ -1,8 +1,8 @@
 
 package com.nastib.tpecom.filters;
 
-import com.nastib.tpecom.beans.Client;
-import com.nastib.tpecom.beans.Commande;
+import com.nastib.tpecom.entities.Client;
+import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.CommandeDao;
 import com.nastib.tpecom.dao.DAOFactory;
