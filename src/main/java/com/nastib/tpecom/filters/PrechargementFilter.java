@@ -1,15 +1,15 @@
 
 package com.nastib.tpecom.filters;
 
-import com.nastib.tpecom.entities.Client;
-import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.CommandeDao;
-import com.nastib.tpecom.dao.DAOFactory;
+import com.nastib.tpecom.entities.Client;
+import com.nastib.tpecom.entities.Commande;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -23,19 +23,20 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/*")
 public class PrechargementFilter implements Filter {
 
-    public static final String CONF_DAO_FACTORY      = "daofactory";
     public static final String ATT_SESSION_CLIENTS   = "clients";
     public static final String ATT_SESSION_COMMANDES = "commandes";
-
-    private ClientDao          clientDao;
+  
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
     private CommandeDao        commandeDao;
+        
+    @EJB
+    private ClientDao          clientDao;
 
-    public void init( FilterConfig config ) throws ServletException {
-        /* Récupération d'une instance de nos DAO Client et Commande */
-        this.clientDao = ( (DAOFactory) config.getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getClientDao();
-        this.commandeDao = ( (DAOFactory) config.getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandeDao();
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
     }
-
+    
     public void doFilter( ServletRequest req, ServletResponse res, FilterChain chain ) throws IOException,
             ServletException {
         /* Cast de l'objet request */
@@ -54,12 +55,12 @@ public class PrechargementFilter implements Filter {
              * Récupération de la liste des clients existants, et enregistrement
              * en session
              */
-            List<Client> listeClients = clientDao.lister();
-            Map<Long, Client> mapClients = new HashMap<Long, Client>();
-            for ( Client client : listeClients ) {
-                mapClients.put( client.getId(), client );
-            }
-            session.setAttribute( ATT_SESSION_CLIENTS, mapClients );
+//            List<Client> listeClients = clientDao.lister();
+//            Map<Long, Client> mapClients = new HashMap<Long, Client>();
+//            for ( Client client : listeClients ) {
+//                mapClients.put( client.getId(), client );
+//            }
+//            session.setAttribute( ATT_SESSION_CLIENTS, mapClients );
         }
 
         /*
@@ -70,12 +71,12 @@ public class PrechargementFilter implements Filter {
              * Récupération de la liste des commandes existantes, et
              * enregistrement en session
              */
-            List<Commande> listeCommandes = commandeDao.lister();
-            Map<Long, Commande> mapCommandes = new HashMap<Long, Commande>();
-            for ( Commande commande : listeCommandes ) {
-                mapCommandes.put( commande.getId(), commande );
-            }
-            session.setAttribute( ATT_SESSION_COMMANDES, mapCommandes );
+//            List<Commande> listeCommandes = commandeDao.lister();
+//            Map<Long, Commande> mapCommandes = new HashMap<Long, Commande>();
+//            for ( Commande commande : listeCommandes ) {
+//                mapCommandes.put( commande.getId(), commande );
+//            }
+//            session.setAttribute( ATT_SESSION_COMMANDES, mapCommandes );
         }
 
         /* Pour terminer, poursuite de la requête en cours */
@@ -84,4 +85,5 @@ public class PrechargementFilter implements Filter {
 
     public void destroy() {
     }
+
 }

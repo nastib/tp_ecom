@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
              initParams = @WebInitParam( name = "chemin", value = "/NetBeansProjects/JavaEE/tp_ecom/src/main/webapp/resources/fichiers/" ) 
 )
 public class Download extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
+    
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10 ko
     private static final int    TAILLE_TAMPON     = 10240;   
     

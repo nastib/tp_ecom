@@ -3,7 +3,6 @@ package com.nastib.tpecom.forms;
 
 import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.entities.Commande;
-import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.CommandeDao;
 import com.nastib.tpecom.dao.DAOException;
 

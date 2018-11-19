@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/listecommandes")
 public class ListeCommandes extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
     public static final String VUE_LISTECLIENTS = "/WEB-INF/listeCommandes.jsp";
     
     @Override

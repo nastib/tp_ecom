@@ -3,9 +3,8 @@ package com.nastib.tpecom.servlets.commande;
 
 import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
-import com.nastib.tpecom.dao.DAOFactory;
-import static com.nastib.tpecom.servlets.client.AfficherClient.CONF_DAO_FACTORY;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,18 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/affichercommande")
 public class AfficherCommande extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
     public static final String VUE = "/WEB-INF/afficherCommande.jsp";
     public static final String ATT_COMMANDE = "commande";
     public static final String ATT_FORM = "form";
     public static final String PARAM_ID_COMMANDE = "idCommande";
-
-    private CommandeDao commandeDao;
     
-    @Override
-    public void init() throws ServletException {
-        /* Récupération d'une instance de notre DAO Utilisateur */
-        commandeDao = ( (DAOFactory) this.getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandeDao();
-    } 
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private CommandeDao commandeDao;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

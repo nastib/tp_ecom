@@ -2,15 +2,40 @@
 package com.nastib.tpecom.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table( name = "client")
 public class Client implements Serializable {
-    private final static long serialVersionUID = 100210;
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+    
+    @Column(name="nom")
     private String nom; 
+    
+    @Column(name="prenom")
     private String prenom; 
+    
+    @Column(name="adresse")
     private String adresse; 
+    
+    @Column(name="telephone")
     private String telephone; 
+    
+    @Column(name="email")
     private String email; 
+    
+    @Column(name="image")
     private String image;
 
     public Long getId() {

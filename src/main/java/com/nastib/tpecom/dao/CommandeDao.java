@@ -3,17 +3,14 @@ package com.nastib.tpecom.dao;
 
 import com.nastib.tpecom.entities.Commande;
 import java.util.List;
+import javax.ejb.Local;
 
+@Local
 public interface CommandeDao {
-
-    void creer( Commande commande ) throws DAOException;
     
-    void modifier( Commande commande ) throws DAOException;
-
-    Commande trouver( long id ) throws DAOException;
-    
-    List<Commande> lister() throws DAOException;
-    
-    void supprimer (Commande commande) throws DAOException;
-
+    public Commande trouver( long id ) throws DAOException;
+    public void creer( Commande commande ) throws DAOException;
+    public void modifier( Commande commande ) throws DAOException;
+    public List<Commande> lister() throws DAOException;
+    public void supprimer( Commande commande ) throws DAOException;
 }

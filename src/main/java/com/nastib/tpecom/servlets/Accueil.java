@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet( "/accueil" )
 public class Accueil extends HttpServlet {
     
+    private static final long serialVersionUID = 1L;
     public static final String VUE = "/WEB-INF/accueil.jsp";
     
     @Override

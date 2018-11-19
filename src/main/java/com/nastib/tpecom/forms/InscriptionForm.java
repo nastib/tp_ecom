@@ -3,6 +3,7 @@ package com.nastib.tpecom.forms;
 import com.nastib.tpecom.entities.Utilisateur;
 import com.nastib.tpecom.dao.DAOException;
 import com.nastib.tpecom.dao.UtilisateurDao;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,7 @@ public final class InscriptionForm {
         String motDePasse = getValeurChamp(request, CHAMP_PASS);
         String confirmation = getValeurChamp(request, CHAMP_CONF);
         String nom = getValeurChamp(request, CHAMP_NOM);
+        Timestamp date = new Timestamp( System.currentTimeMillis() );
 
         Utilisateur utilisateur = new Utilisateur();
 
@@ -44,7 +46,8 @@ public final class InscriptionForm {
             traiterEmail( email, utilisateur );
             traiterMotsDePasse( motDePasse, confirmation, utilisateur );
             traiterNom( nom, utilisateur );        
-
+            traiterDate( date, utilisateur );
+            
             if (erreurs.isEmpty()) {
                 utilisateurDao.creer( utilisateur );
                 resultat = "Succès de l'inscription.";
@@ -113,7 +116,15 @@ public final class InscriptionForm {
         }
         utilisateur.setNom( nom );
     }
-   
+
+    /*
+    * Simple initialisation de la propriété dateInscription du bean avec la
+    * date courante.
+    */
+   private void traiterDate( Timestamp date, Utilisateur utilisateur ) {
+       utilisateur.setDateInscription( date );
+   }
+
     /* Validation de l'adresse email */
     private void validationEmail( String email ) throws FormValidationException {
         if ( email != null && !email.trim().isEmpty()) {

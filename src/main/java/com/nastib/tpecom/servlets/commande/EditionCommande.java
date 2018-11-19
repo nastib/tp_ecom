@@ -3,12 +3,12 @@ package com.nastib.tpecom.servlets.commande;
 
 import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
-import com.nastib.tpecom.dao.DAOFactory;
 import com.nastib.tpecom.forms.EditionCommandeForm;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/editioncommande")
 public class EditionCommande extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
     public static final String CONF_DAO_FACTORY      = "daofactory";
     public static final String ATT_COMMANDE          = "commande";
     public static final String ATT_FORM              = "form";
@@ -30,12 +32,9 @@ public class EditionCommande extends HttpServlet {
     public static final String VUE_SUCCES            = "/listecommandes";
     public static final String VUE_FORM              = "/WEB-INF/editerCommande.jsp";
 
-    private CommandeDao        commandeDao;
-
-    public void init() throws ServletException {
-        /* Récupération d'une instance de nos DAO Client et Commande */
-        this.commandeDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandeDao();
-    }
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private CommandeDao commandeDao;
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 	/* Récupération du paramètre */

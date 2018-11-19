@@ -4,10 +4,10 @@ package com.nastib.tpecom.servlets.commande;
 import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
 import com.nastib.tpecom.dao.DAOException;
-import com.nastib.tpecom.dao.DAOFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,18 +18,17 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/suppressioncommande")
 public class SuppressionCommande extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
+    
     public static final String CONF_DAO_FACTORY  = "daofactory";
     public static final String PARAM_ID_COMMANDE = "idCommande";
     public static final String SESSION_COMMANDES = "commandes";
 
     public static final String VUE               = "/listecommandes";
 
-    private CommandeDao        commandeDao;
-
-    public void init() throws ServletException {
-        /* Récupération d'une instance de notre DAO Utilisateur */
-        this.commandeDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getCommandeDao();
-    }
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private CommandeDao commandeDao;
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Récupération du paramètre */

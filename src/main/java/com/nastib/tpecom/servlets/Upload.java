@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet( urlPatterns = "/upload", initParams = @WebInitParam( name = "chemin", value = "/NetBeansProjects/JavaEE/tp_ecom/src/main/webapp/resources/fichiers/" ) )
 @MultipartConfig( location = "c:/NetBeansProjects/JavaEE/tp_ecom/src/main/webapp/tmp", maxFileSize = 10 * 1024 * 1024, maxRequestSize = 5 * 10 * 1024 * 1024, fileSizeThreshold = 1024 * 1024 )
 public class Upload extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
     public static final String CHEMIN      = "chemin";
 
     public static final String ATT_FICHIER = "fichier";

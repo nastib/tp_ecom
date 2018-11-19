@@ -4,10 +4,10 @@ package com.nastib.tpecom.servlets.client;
 import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.dao.DAOException;
-import com.nastib.tpecom.dao.DAOFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,20 +18,17 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/suppressionclient")
 public class SuppressionClient extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
     public static final String CONF_DAO_FACTORY = "daofactory";
     public static final String PARAM_ID_CLIENT  = "idClient";
     public static final String SESSION_CLIENTS  = "clients";
 
     public static final String VUE              = "/listeclients";
 
-    private ClientDao          clientDao;
-
-    @Override
-    public void init() throws ServletException {
-        /* Récupération d'une instance de notre DAO Utilisateur */
-        this.clientDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getClientDao();
-    }
-
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private ClientDao       clientDao;
+    
     @Override
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Récupération du paramètre */

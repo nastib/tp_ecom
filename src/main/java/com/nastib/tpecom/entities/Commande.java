@@ -1,20 +1,55 @@
 
 package com.nastib.tpecom.entities;
 
+import com.nastib.tpecom.tools.JodaDateTimeConverter;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import org.eclipse.persistence.annotations.Convert;
+import org.eclipse.persistence.annotations.Converter;
 import org.joda.time.DateTime;
 
+@Entity
+@Table(name = "commande")
 public class Commande implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+            
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private long id;
+    
+    @ManyToOne
+    @JoinColumn( name = "id_client" )
     private Client client;
-    private DateTime date;
-    private Double montant;    
+    
+    @Column( name="date_commande", columnDefinition = "TIMESTAMP" )
+    @Converter( name = "dateTimeConverter", converterClass = JodaDateTimeConverter.class )
+    @Convert( "dateTimeConverter" )
+    private DateTime dateCommande;
+    
+    @Column(name="montant")
+    private Double montant; 
+    
+    @Column(name="mode_paiement", length=20)
     private String modePaiement;
+    
+    @Column(name="statut_paiement", length=20)
     private String statutPaiement;
+    
+    @Column(name="mode_livraison", length=20)
     private String modeLivraison;
+    
+    @Column(name="statut_livraison", length=20)
     private String statutLivraison;
-    private final static long serialVersionUID = 100211;
 
     public Long getId() {
         return id;
@@ -25,7 +60,7 @@ public class Commande implements Serializable {
     }
 
     public DateTime getDate() {
-        return date;
+        return dateCommande;
     }
 
     public Client getClient() {
@@ -37,7 +72,7 @@ public class Commande implements Serializable {
     } 
     
     public void setDate(DateTime dateCommande) {
-        this.date = dateCommande;
+        this.dateCommande = dateCommande;
     }
 
     public String getModePaiement() {

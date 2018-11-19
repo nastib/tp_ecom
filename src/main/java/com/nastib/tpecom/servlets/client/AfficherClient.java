@@ -3,9 +3,8 @@ package com.nastib.tpecom.servlets.client;
 
 import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.dao.DAOFactory;
-import com.nastib.tpecom.forms.CreationClientForm;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,19 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/afficherclient")
 public class AfficherClient extends HttpServlet {
     
+    private static final long serialVersionUID = 1L;
+    
     public static final String CONF_DAO_FACTORY = "daofactory";
     public static final String VUE = "/WEB-INF/afficherClient.jsp";
     public static final String ATT_CLIENT = "client";
     public static final String PARAM_ID_CLIENT = "idClient";
     
-    private ClientDao clientDao;
-    
-    @Override
-    public void init() throws ServletException {
-        /* Récupération d'une instance de notre DAO Utilisateur */
-        clientDao = ( (DAOFactory) this.getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getClientDao();
-    } 
-    
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private ClientDao       clientDao;
+        
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	/* Récupération du paramètre */

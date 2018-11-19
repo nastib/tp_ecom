@@ -3,12 +3,12 @@ package com.nastib.tpecom.servlets.client;
 
 import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.dao.DAOFactory;
 import com.nastib.tpecom.forms.EditionClientForm;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebInitParam;
@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 @MultipartConfig( location = "c:/NetBeansProjects/JavaEE/tp_ecom/src/main/webapp/tmp", maxFileSize = 1024 * 1024, maxRequestSize = 5 * 1 * 1024 * 1024, fileSizeThreshold = 512 * 1024 )
 public class EditionClient extends HttpServlet {
     
+    private static final long serialVersionUID = 1L;
     public static final String CONF_DAO_FACTORY = "daofactory";
     public static final String VUE_AFFICHE = "/listeclients";
     public static final String VUE_EDITION = "/WEB-INF/editerClient.jsp";
@@ -31,13 +32,9 @@ public class EditionClient extends HttpServlet {
     public static final String SESSION_CLIENTS ="clients";
     public static final String PARAM_ID_CLIENT = "idClient";
 
-    private ClientDao clientDao;
-    
-    @Override
-    public void init() throws ServletException {
-        /* Récupération d'une instance de notre DAO Utilisateur */
-        clientDao = ( (DAOFactory) this.getServletContext().getAttribute( CONF_DAO_FACTORY ) ).getClientDao();
-    } 
+    // Injection de notre EJB (Session Bean Stateless)
+    @EJB
+    private ClientDao       clientDao; 
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
