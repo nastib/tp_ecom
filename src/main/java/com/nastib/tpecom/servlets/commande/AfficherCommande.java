@@ -1,8 +1,8 @@
 
 package com.nastib.tpecom.servlets.commande;
 
-import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
+import com.nastib.tpecom.entities.Commande;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

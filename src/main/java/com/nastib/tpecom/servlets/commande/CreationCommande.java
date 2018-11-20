@@ -2,8 +2,8 @@
 package com.nastib.tpecom.servlets.commande;
 
 import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
+import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.forms.CreationCommandeForm;
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,10 +34,6 @@ public class CreationCommande extends HttpServlet {
     // Injection de notre EJB (Session Bean Stateless)
     @EJB
     private CommandeDao commandeDao;
-
-    // Injection de notre EJB (Session Bean Stateless)
-    @EJB
-    private ClientDao clientDao;
     
     @Override
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

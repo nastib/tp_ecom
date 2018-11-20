@@ -3,7 +3,6 @@ package com.nastib.tpecom.entities;
 
 import com.nastib.tpecom.tools.JodaDateTimeConverter;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
 import org.joda.time.DateTime;
 
+@NamedQueries({@NamedQuery( name="Commande.update", 
+                            query = "UPDATE Commande c SET c.dateCommande = :date, " 
+                                          + "c.montant = :montant, " 
+                                          + "c.client = :client," 
+                                          + "c.modeLivraison = :modeliv," 
+                                          + "c.statutLivraison = :statutliv," 
+                                          + "c.modePaiement = :modepaie," 
+                                          + "c.statutPaiement = :statutpaie " 
+                                          + "WHERE c.id = :id" ),
+             @NamedQuery( name="Commande.selectAll", query="SELECT c FROM Commande c ORDER BY c.id")
+             })
 @Entity
 @Table(name = "commande")
 public class Commande implements Serializable {

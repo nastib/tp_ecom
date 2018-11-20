@@ -1,8 +1,8 @@
 
 package com.nastib.tpecom.servlets.client;
 
-import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
+import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.forms.EditionClientForm;
 
 import java.io.IOException;

@@ -3,14 +3,14 @@ package com.nastib.tpecom.dao;
 
 import com.nastib.tpecom.entities.Commande;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
-@Local
+@Remote
 public interface CommandeDao {
     
-    public Commande trouver( long id ) throws DAOException;
-    public void creer( Commande commande ) throws DAOException;
-    public void modifier( Commande commande ) throws DAOException;
-    public List<Commande> lister() throws DAOException;
-    public void supprimer( Commande commande ) throws DAOException;
+    public Commande trouver( long id ) throws DaoException;
+    public void creer( Commande commande ) throws DaoException;
+    public void modifier( Commande commande ) throws DaoException;
+    public List<Commande> lister() throws DaoException;
+    public void supprimer( Commande commande ) throws DaoException;
 }

@@ -1,7 +1,7 @@
 package com.nastib.tpecom.forms;
 
 import com.nastib.tpecom.entities.Utilisateur;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.dao.DaoException;
 import com.nastib.tpecom.dao.UtilisateurDao;
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public final class InscriptionForm {
             } else {
                 resultat = "Échec de l'inscription.";
             }
-        } catch ( DAOException e ) {
+        } catch ( DaoException e ) {
             resultat = "Échec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
             e.printStackTrace();
         }

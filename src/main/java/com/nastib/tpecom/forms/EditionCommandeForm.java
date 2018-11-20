@@ -1,10 +1,10 @@
 
 package com.nastib.tpecom.forms;
 
+import com.nastib.tpecom.dao.CommandeDao;
 import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.entities.Commande;
-import com.nastib.tpecom.dao.CommandeDao;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.dao.DaoException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class EditionCommandeForm  {
 
     private String              resultat;
     private Map<String, String> erreurs                = new HashMap<String, String>();
-    private CommandeDao         commandeDao;
+    private CommandeDao     commandeDao;
     private Client              client;
 
     public EditionCommandeForm( CommandeDao commandeDao ) {
@@ -101,7 +101,7 @@ public class EditionCommandeForm  {
             } else {
                 resultat = "Échec de la modification de la commande.";
             }
-        } catch ( DAOException e ) {
+        } catch ( DaoException e ) {
             setErreur( "imprévu", "Erreur imprévue lors de la modification." );
             resultat = "Échec de la modification de la commande : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
             e.printStackTrace();

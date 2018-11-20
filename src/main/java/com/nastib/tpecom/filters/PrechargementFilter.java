@@ -55,12 +55,12 @@ public class PrechargementFilter implements Filter {
              * Récupération de la liste des clients existants, et enregistrement
              * en session
              */
-//            List<Client> listeClients = clientDao.lister();
-//            Map<Long, Client> mapClients = new HashMap<Long, Client>();
-//            for ( Client client : listeClients ) {
-//                mapClients.put( client.getId(), client );
-//            }
-//            session.setAttribute( ATT_SESSION_CLIENTS, mapClients );
+            List<Client> listeClients = clientDao.lister();
+            Map<Long, Client> mapClients = new HashMap<Long, Client>();
+            for ( Client client : listeClients ) {
+                mapClients.put( client.getId(), client );
+            }
+            session.setAttribute( ATT_SESSION_CLIENTS, mapClients );
         }
 
         /*
@@ -71,12 +71,12 @@ public class PrechargementFilter implements Filter {
              * Récupération de la liste des commandes existantes, et
              * enregistrement en session
              */
-//            List<Commande> listeCommandes = commandeDao.lister();
-//            Map<Long, Commande> mapCommandes = new HashMap<Long, Commande>();
-//            for ( Commande commande : listeCommandes ) {
-//                mapCommandes.put( commande.getId(), commande );
-//            }
-//            session.setAttribute( ATT_SESSION_COMMANDES, mapCommandes );
+            List<Commande> listeCommandes = commandeDao.lister();
+            Map<Long, Commande> mapCommandes = new HashMap<Long, Commande>();
+            for ( Commande commande : listeCommandes ) {
+                mapCommandes.put( commande.getId(), commande );
+            }
+            session.setAttribute( ATT_SESSION_COMMANDES, mapCommandes );
         }
 
         /* Pour terminer, poursuite de la requête en cours */

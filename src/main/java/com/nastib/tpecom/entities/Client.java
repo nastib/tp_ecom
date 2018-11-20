@@ -7,8 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({@NamedQuery( name="Client.update", 
+             query="UPDATE Client c SET c.adresse = :adresse, "
+                                    + " c.email = :email, "
+                                    + " c.nom = :nom, "
+                                    + " c.prenom = :prenom, "
+                                    + " c.telephone = :telephone, "
+                                    + " c.image = :image "
+                                    + " WHERE c.id = :id"
+            ),
+             @NamedQuery(name = "Client.selectAll", query="SELECT c FROM Client c ORDER BY c.id")
+            })
 @Entity
 @Table( name = "client")
 public class Client implements Serializable {

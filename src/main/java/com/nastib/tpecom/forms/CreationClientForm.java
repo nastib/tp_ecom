@@ -1,9 +1,9 @@
 package com.nastib.tpecom.forms;
 
+import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.entities.BeanException;
 import com.nastib.tpecom.entities.Client;
-import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.dao.DaoException;
 import eu.medsea.mimeutil.MimeUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -91,7 +91,7 @@ public class CreationClientForm  {
             } else {
                 resultat = "Échec de la création du client.";
             }
-        } catch ( DAOException e ) {
+        } catch ( DaoException e ) {
             setErreur( "imprévu", "Erreur imprévue lors de la création." );
             resultat = "Échec de la création du client : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
             e.printStackTrace();

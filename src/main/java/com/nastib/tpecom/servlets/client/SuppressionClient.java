@@ -1,9 +1,9 @@
 
 package com.nastib.tpecom.servlets.client;
 
-import com.nastib.tpecom.entities.Client;
 import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.entities.Client;
+import com.nastib.tpecom.dao.DaoException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class SuppressionClient extends HttpServlet {
                 clientDao.supprimer( clients.get( id ) );
                 /* Puis suppression du client de la Map */
                 clients.remove( id );
-            } catch ( DAOException e ) {
+            } catch ( DaoException e ) {
                 e.printStackTrace();
             }
             /* Et remplacement de l'ancienne Map en session par la nouvelle */

@@ -1,9 +1,9 @@
 
 package com.nastib.tpecom.servlets.commande;
 
-import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.entities.Commande;
+import com.nastib.tpecom.dao.DaoException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class SuppressionCommande extends HttpServlet {
                 commandeDao.supprimer( commandes.get( id ) );
                 /* Puis suppression de la commande de la Map */
                 commandes.remove( id );
-            } catch ( DAOException e ) {
+            } catch ( DaoException e ) {
                 e.printStackTrace();
             }
             /* Et remplacement de l'ancienne Map en session par la nouvelle */

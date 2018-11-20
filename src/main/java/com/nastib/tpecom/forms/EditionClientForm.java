@@ -1,9 +1,9 @@
 package com.nastib.tpecom.forms;
 
+import com.nastib.tpecom.dao.ClientDao;
 import com.nastib.tpecom.entities.BeanException;
 import com.nastib.tpecom.entities.Client;
-import com.nastib.tpecom.dao.ClientDao;
-import com.nastib.tpecom.dao.DAOException;
+import com.nastib.tpecom.dao.DaoException;
 import eu.medsea.mimeutil.MimeUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -96,7 +96,7 @@ public class EditionClientForm  {
             } else {
                 resultat = "Échec de la modification du client.";
             }
-        } catch ( DAOException e ) {
+        } catch ( DaoException e ) {
             setErreur( "imprévu", "Erreur imprévue lors de la modification." );
             resultat = "Échec de la modification du client : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
             e.printStackTrace();

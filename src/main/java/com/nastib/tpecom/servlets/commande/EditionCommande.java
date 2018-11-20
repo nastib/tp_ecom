@@ -1,8 +1,8 @@
 
 package com.nastib.tpecom.servlets.commande;
 
-import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.dao.CommandeDao;
+import com.nastib.tpecom.entities.Commande;
 import com.nastib.tpecom.forms.EditionCommandeForm;
 
 import java.io.IOException;
